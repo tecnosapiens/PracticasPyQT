@@ -1,0 +1,9 @@
+Convertir archivos .ui en un archivo .py usando pyuic5
+Ahora, intentemos la segunda forma al convertir el archivo .ui a un archivo de código Python:
+
+$ pyuic5 mydesign.ui -o mydesign.py
+
+
+¡Sí! Se creó un nuevo archivo con el nombre mydesign.py. Ahora, importemos ese archivo para mostrar nuestra ventana.
+
+Pyuic5 significa la versión 5 del convertidor de interfaz de usuario de Python.
