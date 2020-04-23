@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QDialog, QApplication
-from MiPrimerDialogoQt import *
+from InicioSesionDialogo import *
 
 class GUI_Principal(QDialog) :
     def __init__(self):
