@@ -5,7 +5,7 @@ from InicioSesionDialogo import *
 class GUI_Principal(QDialog) :
     def __init__(self):
         super().__init__()
-        self.ui = Ui_Dialog()
+        self.ui = Ui_dlgSesion()
         self.ui.setupUi(self)
 
 if __name__ == "__main__":
