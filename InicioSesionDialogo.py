@@ -51,6 +51,8 @@ class Ui_dlgSesion(object):
         font.setWeight(75)
         self.lblRoleSesion.setFont(font)
         self.lblRoleSesion.setObjectName("lblRoleSesion")
+
+        # Line Edit del nombre de usuario 
         self.leUsuarioSesion = QtWidgets.QLineEdit(self.gbSesion)
         self.leUsuarioSesion.setGeometry(QtCore.QRect(180, 30, 221, 30))
         font = QtGui.QFont()
@@ -63,6 +65,36 @@ class Ui_dlgSesion(object):
         self.leUsuarioSesion.setMaxLength(50)
         self.leUsuarioSesion.setAlignment(QtCore.Qt.AlignCenter)
         self.leUsuarioSesion.setObjectName("leUsuarioSesion")
+
+        #Establece la funcion para cuando se presione enter en el leUsuarioSesion
+        self.leUsuarioSesion.returnPressed.connect(self.fnProcesarEnter)
+        self.leUsuarioSesion.keyPressEvent = self.keyPressEvent
+
+        # Line Edit del Password 
+        self.lePasswordSesion = QtWidgets.QLineEdit(self.gbSesion)
+        self.lePasswordSesion.setGeometry(QtCore.QRect(180, 80, 220, 30))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lePasswordSesion.setFont(font)
+        self.lePasswordSesion.setToolTip("")
+        self.lePasswordSesion.setToolTipDuration(-1)
+        self.lePasswordSesion.setMaxLength(50)
+        self.lePasswordSesion.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lePasswordSesion.setAlignment(QtCore.Qt.AlignCenter)
+        self.lePasswordSesion.setReadOnly(False)
+        self.lePasswordSesion.setObjectName("lePasswordSesion")
+
+        #Establece la funcion para cuando se presione enter en el lePassword
+        self.lePasswordSesion.returnPressed.connect(self.fnProcesarEnter)
+
+        # Establece la funcion procesar cambio de texto en el password
+        self.lePasswordSesion.textChanged.connect(self.fnProcesarCambioTexto)
+
+
+        # Line Edit para capturar el Role del usuario
         self.leRoleSesion = QtWidgets.QLineEdit(self.gbSesion)
         self.leRoleSesion.setGeometry(QtCore.QRect(180, 180, 221, 30))
         palette = QtGui.QPalette()
@@ -126,21 +158,7 @@ class Ui_dlgSesion(object):
         self.leNombreSesion.setAlignment(QtCore.Qt.AlignCenter)
         self.leNombreSesion.setReadOnly(True)
         self.leNombreSesion.setObjectName("leNombreSesion")
-        self.lePasswordSesion = QtWidgets.QLineEdit(self.gbSesion)
-        self.lePasswordSesion.setGeometry(QtCore.QRect(180, 80, 220, 30))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lePasswordSesion.setFont(font)
-        self.lePasswordSesion.setToolTip("")
-        self.lePasswordSesion.setToolTipDuration(-1)
-        self.lePasswordSesion.setMaxLength(50)
-        self.lePasswordSesion.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.lePasswordSesion.setAlignment(QtCore.Qt.AlignCenter)
-        self.lePasswordSesion.setReadOnly(False)
-        self.lePasswordSesion.setObjectName("lePasswordSesion")
+       
         self.pbAceptarSesion = QtWidgets.QPushButton(dlgSesion)
         self.pbAceptarSesion.setGeometry(QtCore.QRect(240, 260, 180, 50))
         icon = QtGui.QIcon()
@@ -178,4 +196,36 @@ class Ui_dlgSesion(object):
         self.lePasswordSesion.setText(_translate("dlgSesion", "Unknow"))
         self.pbAceptarSesion.setText(_translate("dlgSesion", "Aceptar"))
         self.pbCancelarSesion.setText(_translate("dlgSesion", "Cancelar"))
+
+    def fnProcesarEnter(self):
+        print("has presionado ENTER")
+
+        #Se verifica si tiene el foco el usuario 
+        if(self.leUsuarioSesion.hasFocus()):
+            # manda el foco al pasword
+            print("foco al Password")
+            self.lePasswordSesion.setFocus()
+        else:
+            #El foco lo tiene el password
+            print("El foco a Aceptar")
+            self.pbAceptarSesion.setFocus()
+
+    # Funcion para detectar cambios
+    def fnProcesarCambioTexto(self):
+        #Verifica si tiene el foco el usuario
+        if(self.leUsuarioSesion.hasFocus()):
+            # manda el focus al password
+            print("Cambio de texto en usuario")
+            print(self.leUsuarioSesion.text())
+        else:
+            #El foco lo tiene el password
+            print("Cambio de Texto en Password")
+            print(self.lePasswordSesion.text())
+
+    # Se ha presionado una tecla 
+    def keyPressEvent(self, event):
+        print("se ha presionado una tecla: ", event.text())
+
+
+
 
