@@ -65,11 +65,11 @@ class Ui_dlgSesion(object):
         self.leUsuarioSesion.setMaxLength(50)
         self.leUsuarioSesion.setAlignment(QtCore.Qt.AlignCenter)
         self.leUsuarioSesion.setObjectName("leUsuarioSesion")
-
+        """
         #Establece la funcion para cuando se presione enter en el leUsuarioSesion
         self.leUsuarioSesion.returnPressed.connect(self.fnProcesarEnter)
         self.leUsuarioSesion.keyPressEvent = self.keyPressEvent
-
+        """
         # Line Edit del Password 
         self.lePasswordSesion = QtWidgets.QLineEdit(self.gbSesion)
         self.lePasswordSesion.setGeometry(QtCore.QRect(180, 80, 220, 30))
@@ -86,13 +86,14 @@ class Ui_dlgSesion(object):
         self.lePasswordSesion.setAlignment(QtCore.Qt.AlignCenter)
         self.lePasswordSesion.setReadOnly(False)
         self.lePasswordSesion.setObjectName("lePasswordSesion")
-
+        """
         #Establece la funcion para cuando se presione enter en el lePassword
         self.lePasswordSesion.returnPressed.connect(self.fnProcesarEnter)
 
         # Establece la funcion procesar cambio de texto en el password
         self.lePasswordSesion.textChanged.connect(self.fnProcesarCambioTexto)
 
+        """
 
         # Line Edit para capturar el Role del usuario
         self.leRoleSesion = QtWidgets.QLineEdit(self.gbSesion)
@@ -197,6 +198,7 @@ class Ui_dlgSesion(object):
         self.pbAceptarSesion.setText(_translate("dlgSesion", "Aceptar"))
         self.pbCancelarSesion.setText(_translate("dlgSesion", "Cancelar"))
 
+    """
     def fnProcesarEnter(self):
         print("has presionado ENTER")
 
@@ -226,6 +228,18 @@ class Ui_dlgSesion(object):
     def keyPressEvent(self, event):
         print("se ha presionado una tecla: ", event.text())
 
+        # Verifica si tiene el foco el Usuario 
+        if(self.leUsuarioSesion.hasFocus()):
+            # El Usuario tiene el Foco
+            print("Presionaste una tecla en Usuario")
+
+            # Evitando el 5
+            if(event.text()!="5"):
+                return QtWidgets.QLineEdit.keyPressEvent(self.leUsuarioSesion, event)
+        elif(self.lePasswordSesion.hasFocus()):
+            # El foco lo tiene el Password
+            print("Presionaste una tecla en Password")
+    """
 
 
 
