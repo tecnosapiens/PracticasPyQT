@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QDialog, QApplication
+from PyQt5.QtWidgets import QMainWindow, QDialog, QApplication, QMessageBox
 from InicioSesionDialogo import *
 
 class GUI_DialogoInicioSesion(QDialog) :
@@ -80,7 +80,23 @@ class GUI_DialogoInicioSesion(QDialog) :
                 # Mensaje
                 print("Se presiono una tecla en el boton de Aceptar")
         
+def fnMensaje(sMensaje, sInformacion):
+    #Crea un MessageBox
+    msg = QMessageBox()
 
+    # Establece el Icono
+    msg.setIcon(QMessageBox.information)
+
+    # Coloca el mensaje a desplegar definido por desarrollador
+    msg.setText(sMensaje)
+    msg.setInformativeText(sInformacion)
+    msg.setWindowTitle("RoTech PyQt5")
+    msg.setDetailedText("Los detalles encontrados son los siguientes")
+    msg.setStandardButtons(QMessageBox.Ok)
+
+    # Ejecuta el MessageBox
+    msg.exec_()
+    return
       
 if __name__ == "__main__":
     app = QApplication(sys.argv)

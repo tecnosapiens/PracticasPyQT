@@ -191,10 +191,10 @@ class Ui_dlgSesion(object):
         self.lblPasswordSesion.setText(_translate("dlgSesion", "Password:"))
         self.lblNombreSesion.setText(_translate("dlgSesion", "Nombre:"))
         self.lblRoleSesion.setText(_translate("dlgSesion", "Role:"))
-        self.leUsuarioSesion.setText(_translate("dlgSesion", "mi usuario"))
+        self.leUsuarioSesion.setText(_translate("dlgSesion", ""))
         self.leRoleSesion.setText(_translate("dlgSesion", "Unknow"))
         self.leNombreSesion.setText(_translate("dlgSesion", "Unknow"))
-        self.lePasswordSesion.setText(_translate("dlgSesion", "Unknow"))
+        self.lePasswordSesion.setText(_translate("dlgSesion", ""))
         self.pbAceptarSesion.setText(_translate("dlgSesion", "Aceptar"))
         self.pbCancelarSesion.setText(_translate("dlgSesion", "Cancelar"))
 
