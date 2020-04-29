@@ -30,6 +30,8 @@ class GUI_DialogoInicioSesion(QDialog) :
         # CONTROL DE EVENTOS PARA EL CONTROL Boton Aceptar
         # Asocia el KeyPressEvent al Boton de Aceptar
         self.ui.pbAceptarSesion.keyPressEvent = self.keyPressEvent
+        # Controla el Evento Click
+        self.ui.pbAceptarSesion.clicked.connect(self.fnProcesaClickAceptarSesion)
 
 
 
@@ -79,6 +81,57 @@ class GUI_DialogoInicioSesion(QDialog) :
         else:
                 # Mensaje
                 print("Se presiono una tecla en el boton de Aceptar")
+
+                if(event.key() == QtCore.Qt.Key_Return):
+                    # Llama a la funcion para validar los datos 
+                    self.fnValidaDatos()
+    
+
+    def fnProcesaClickAceptarSesion(self):
+        if(self.ui.pbAceptarSesion.hasFocus()):
+            # Llama a la funcion Validar los datos 
+            self.fnValidaDatos()
+
+    # FUNCION PARA VALIDAR LOS DATOS DEL DIALOGO DE INICIO DE SESION 
+    def fnValidaDatos(self):
+        # Variable para el mensaje
+        sMensaje = ""
+
+        # Valida el Usuario 
+        if(len(self.ui.leUsuarioSesion.text())== 0):
+            #Coloca el dato en el dialogo de mensaje 
+            sMensaje =  "El usuario \n"
+
+            # Coloca el foco en el usuario
+            self.ui.leUsuarioSesion.setFocus()
+
+        # Valida el Password
+        if(len(self.ui.lePasswordSesion.text())==0):
+            # Verifica si debe colocar el foco 
+            if(len(sMensaje)==0):
+                # Coloca el foco
+                self.ui.lePasswordSesion.setFocus()
+
+            # Agrega el dato en el sMensaje
+            sMensaje = sMensaje + "El Password"
+        # Verifica si debe desplegar el mensaje de erro 
+        if(len(sMensaje)>0):
+            # Actualiza el mensaje 
+            sMensaje = "Revise los siguientes datos:\n"
+            # Despliega el MessageBox
+            fnMensaje(sMensaje, "El Usuario y el Password no pueden quedar vacios")
+            # Hay error en los datos 
+            return False
+        else:
+            # Despliega el MessageBox
+            fnMensaje("Los datos estan correctos", "La plicación intentará el acceso")
+            # los datos estan correctos
+            return True
+
+
+        # Valida en Usuario
+
+
         
 def fnMensaje(sMensaje, sInformacion):
     #Crea un MessageBox
